@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: siun <siun@student.42.fr>                  +#+  +:+       +#+         #
+#    By: subpark <subpark@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 06:07:24 by siun              #+#    #+#              #
-#    Updated: 2024/02/27 06:07:55 by siun             ###   ########.fr        #
+#    Updated: 2024/03/12 14:56:24 by subpark          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC = megaphone.cpp
 OBJ = $(SRC:.cpp=.o)
-CC = g++
+CC = c++
 RM = rm -f
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 

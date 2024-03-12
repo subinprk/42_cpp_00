@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 06:29:17 by siun              #+#    #+#             */
-/*   Updated: 2024/03/10 17:12:56 by siun             ###   ########.fr       */
+/*   Updated: 2024/03/12 17:05:49 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ PhoneBook :: PhoneBook()
 	std::cout << "Phone Book Started" << std::endl;
 
 }
-
-// void PhoneBook::regenerate_contacts()
-// {
-// 	~_contacts[_index];
-
-// }
 
 void PhoneBook :: add()
 {
@@ -46,9 +40,7 @@ void PhoneBook :: add()
 	std::cout << "Darkest Secret: ";
 	std::cin >> data;
 	_contacts[_index].put_secret(data);
-	if (_index >= 7)
-		return ;
-	 _index = _index + 1;
+	 _index = (_index + 1) % 8;
 }
 
 void PhoneBook :: search()
@@ -59,48 +51,33 @@ void PhoneBook :: search()
 	std::cout << "Put the index to check the Number: ";
 	std::cin >> tmp;
 	index_input = std::atoi(tmp.c_str()) - 1;
-	if((_index != 7) && (_index <= 0 || index_input + 1 > _index || index_input + 1 <= 0))
+	if (index_input < 0)
+	{
 		std::cout << "Out of Scope\n";
-	else if (_index == 7 && _contacts[7].read_data(FIRST_NAME) == "")
-		std::cout << "Out of Scope\n";
-	else if (index_input > 7)
-		std::cout << "Out of Scope\n";
-	else
+		return ;
+	}
+	else if (index_input < 8 && _contacts[index_input].read_data(FIRST_NAME) != "")
 	{
 		std::cout << "First Name: " << _contacts[index_input].read_data(FIRST_NAME) << std::endl;
 		std::cout << "Last Name: " << _contacts[index_input].read_data(LAST_NAME) << std::endl;
 		std::cout << "Nickname: " << _contacts[index_input].read_data(NICKNAME) << std::endl;
 		std::cout << "Number: " << _contacts[index_input].read_data(NUMBER) << std::endl;
 		std::cout << "Darkest Secret: " << _contacts[index_input].read_data(SECRET) << std::endl;
+		return ;
 	}
+	std::cout << "Out of Scope\n";
+		return ;
 }
 
 void PhoneBook :: print_data()
 {
 	std::cout << std::endl;
 	printing_column_info();
-	for (int i = 0; i < _index; i ++)
+	for (int i = 0; (i < 8 && _contacts[i].read_data(FIRST_NAME) != ""); i ++)
 	{
 		std::cout << "         " << i + 1 << "|";
 		printing_ten(_contacts[i].read_data(FIRST_NAME), 0);
 		printing_ten(_contacts[i].read_data(LAST_NAME), 0);
 		printing_ten(_contacts[i].read_data(NICKNAME), 1);
 	}
-	if (_index == 7 && _contacts[7].read_data(FIRST_NAME) != "")
-	{
-		std::cout << "         " << 8 << "|";
-		printing_ten(_contacts[7].read_data(FIRST_NAME), 0);
-		printing_ten(_contacts[7].read_data(LAST_NAME), 0);
-		printing_ten(_contacts[7].read_data(NICKNAME), 1);
-	}
-	// 	printing_ten(std::iota(_index), (i == _index - 1));
-	// for (int i = 0; i < _index; i ++)
-	// 	printing_ten(_contacts[i].read_data(FIRST_NAME), (i == _index - 1));
-	// std::cout << std::endl;
-	// for (int i = 0; i < _index; i ++)
-	// 	printing_ten(_contacts[i].read_data(LAST_NAME), (i == _index - 1));
-	// std::cout << std::endl;
-	// for (int i = 0; i < _index; i ++)
-	// 	printing_ten(_contacts[i].read_data(NICKNAME), (i == _index - 1));
-	//std::cout << std::endl;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 00:37:52 by siun              #+#    #+#             */
-/*   Updated: 2024/03/10 00:52:06 by siun             ###   ########.fr       */
+/*   Updated: 2024/03/12 14:53:58 by subpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@ void    printing_ten(const std::string str, bool end)
 {
 	int length = str.length();
 
+	if (length >= 10)
+	{
+		for (int i = 0; i < 9; i ++)
+			std::cout << str[i];
+		std::cout << ".";
+		if (!end)
+			std::cout << "|";
+		else
+			std::cout << std::endl;
+		return ;
+	}
 	for(int i = 0; 10 - length > i; i ++)
 		std::cout << " ";
 	for(int i = 0; i < length - 1; i ++)
