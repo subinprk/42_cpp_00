@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: subpark <subpark@student.42.fr>            +#+  +:+       +#+        */
+/*   By: siun <siun@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 06:29:17 by siun              #+#    #+#             */
-/*   Updated: 2024/03/12 17:05:49 by subpark          ###   ########.fr       */
+/*   Updated: 2024/03/12 20:57:56 by siun             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void PhoneBook :: add()
 	std::string data;
 
 	std::cout << "First Name: ";
-	std::cin >> data;
+	std::getline(std::cin, data);
 	_contacts[_index].put_first_name(data);
 			std::cout << "last Name: ";
-			std::cin >> data;
+			std::getline(std::cin, data);
 			 _contacts[_index].put_last_name(data);
 	std::cout << "Nickname: ";
-	std::cin >> data;
+	std::getline(std::cin, data);
 	_contacts[_index].put_nickname(data);
 			std::cout << "Number: ";
-			std::cin >> data;
+			std::getline(std::cin, data);
 			_contacts[_index].put_number(data);
 	std::cout << "Darkest Secret: ";
-	std::cin >> data;
+	std::getline(std::cin, data);
 	_contacts[_index].put_secret(data);
 	 _index = (_index + 1) % 8;
 }
@@ -49,7 +49,7 @@ void PhoneBook :: search()
 	int			index_input;
 
 	std::cout << "Put the index to check the Number: ";
-	std::cin >> tmp;
+	std::getline(std::cin, tmp);
 	index_input = std::atoi(tmp.c_str()) - 1;
 	if (index_input < 0)
 	{
